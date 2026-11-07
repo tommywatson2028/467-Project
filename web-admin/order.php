@@ -1,6 +1,14 @@
 <?php
-require_once __DIR__ . '/../shared/helpers.php';
-require_once __DIR__ . '/../backend/adminFunctions.php'; // backend provides get_order()
+include '../shared/helpers.php';
+include '../backend/adminFunctions.php'; // backend provides get_order()
+include '../shared/setConnectionParams.php';
+
+try {
+  $pdo = new PDO($dsn, $username, $password);
+}
+catch (PDOException $e) {
+   echo 'Connection to database failed: ' . $e->getMessage();
+}
 
 // Expected: ['id','date','status','customer_name','email','address','auth_number','weight',
 //            'subtotal','shipping','total','items'=>[['part_number','description','qty','price']]] or null
@@ -11,15 +19,15 @@ $order = get_order($_GET['id'] ?? '');
 <head>
   <meta charset="utf-8">
   <title>Admin - Order Detail</title>
-  <link rel="stylesheet" href="/shared/css/styles.css">
+  <link rel="stylesheet" href='../shared/css/styles.css'>
 </head>
 <nav class="nav-bar">
-    <a href="/web-admin/index.php" class="nav-link">Orders</a>
-    <a href="/web-admin/shipping.php" class="nav-link">Shipping Charges</a>
+    <a href='index.php' class="nav-link">Orders</a>
+    <a href='shipping.php' class="nav-link">Shipping Charges</a>
 </nav>
 <body class="adm-page">
   <div class="page-header">
-    <img class="logo" src="/shared/images/NEMT_LOGO.png" alt="NEMT Auto Parts">
+    <img class="logo" src='../shared/images/NEMT_LOGO.png' alt="NEMT Auto Parts">
     <h1 class="title">ADMIN - ORDER <?= $order ? '#' . h($order['id']) : '' ?></h1>
   </div>
   
