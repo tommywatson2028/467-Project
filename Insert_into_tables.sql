@@ -5,21 +5,21 @@ VALUES
     (00000000500,'Placeholder but will be a Wheel',249.99,22.00,'Placeholder.jpg'),
     (00000000001,'Placeholder but will be a Car Door',999.99,50.00,'Placeholder.jpg'),
     (00000000010,'Placeholder but will be a Window',749.99,37.37,'Placeholder.jpg'),
-    (00000001000,'Placeholder but will be a Engine',1,1,'Placeholder.jpg'),
-    (00000000777,'Placeholder but will be a Spark Plug',100000.00,99.99,'Placeholder.jpg');
+    (00000001000,'Placeholder but will be a Engine',1.00,1,'Placeholder.jpg'),
+    (00000000777,'Placeholder but will be a Spark Plug',100000.01,99.99,'Placeholder.jpg');
 
 INSERT INTO ORDERS
     (TrackingID, Status, Total, Name, CCNumber, City, Street, Contact)
 VALUES
     (0001,'Processed',1,'John Smith','0000000000000000','Normalville','Average St.','000-000-0000'),
     (5872,'Shipped',749.99,'Jon Lehuta','0123456789012345','Grayslake','Microsoft Blvd.','379-285-1460'),
-    (9999,'Delivered',201749.98,'Jean Smiths','9999999999999999','Richston','Money Rd.','999-999-9999');
+    (9999,'Delivered',201749.99,'Jean Smiths','9999999999999999','Richston','Money Rd.','999-999-9999');
 
 INSERT INTO EMPLOYEE
     (EmpID, IsAdmin, FirstName, LastName, Username, Password, Email)
 VALUES
-    (77777777777,FALSE,'Nico','Flowers','Prospill','88888888','unomail@gmail.com'),
-    (93471390572,TRUE,'Timmy','Batson','Admin','12345678','dosmail@gmail.com'),
+    (77777777777,FALSE,'Nico','Flowers','Prospill','$2y$12$1gtzVelmVe4L1d7EzZ3GaO.PAm2I7WVw5HG6yjSvNcm.PeAkaKdmW','unomail@gmail.com'),
+    (93471390572,TRUE,'Timmy','Batson','Admin','$2y$12$ym1U0P3K/DursMNNAMaTCu0cgm/GzsKLXjuGmdxpk.H3Thjyu2Yta','dosmail@gmail.com'),
     (00000000000,FALSE,'Mewgumi','Gohome','Gamerapple','66666666','tresmail@gmail.com'),
     (99999999999,FALSE,'Ewin','Richstrom','Hammersometimes','55555555','fourmail@gmail.com');
 
