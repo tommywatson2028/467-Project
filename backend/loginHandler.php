@@ -4,25 +4,30 @@ session_start();
 
 //login handler should only work if it was accessed by posting the form from the login page
 //otherwise, send to login
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 	//connect to database
-	include 'set_connection_params.php';
+	include '../shared/setConnectionParams.php';
 	try { // if something goes wrong, an exception is thrown
 		$pdo = new PDO($dsn, $username, $password);
 	}
 	catch(PDOException $e) { // handle that exception
 		echo "Connection to database failed: " . $e->getMessage();
 	}
-	
-	//read login info
-	$usernameInput = $_POST['Username'];
-	$passwordInput = $_POST['Password'];
+} else {
+    // if not accessed via POST, redirect to login page
+    header('Location: ../web-login/loginPage.php');
+    exit;
+}
+
+//read login info
+$usernameInput = $_POST['Username'];
+$passwordInput = $_POST['Password'];
 
 	//check if login info is in the database
 	//if exists, handle the login and send the user to the right page
 	//if not, send user back to login
 	// check if username exists in the database
-    $sql = "SELECT * FROM Users WHERE USERNAME = :Username";
+    $sql = "SELECT * FROM EMPLOYEE WHERE Username = :Username";
 
     $result = $pdo->prepare($sql);
     $result->execute([':Username' => $usernameInput]);
@@ -38,21 +43,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // store employee information in the session
             $_SESSION['EmpID'] = $row['EmpID'];
-            $_SESSION['Is_Admin'] = (bool)$row['Is_Admin'];
+	    $_SESSION['IsAdmin'] = (bool)$row['IsAdmin'];
+	    $_SESSION['FirstName'] = $row['FirstName'];
 
             // send employee to dashboard
-            header('Location: employeeDashboard.php');
+            header('Location: ../web-login/employeeDashboard.php');
             exit;
 
         } else {
             // incorrect password
-            header('Location: loginPage.php?failed=1');
+            header('Location: ../web-login/loginPage.php?failed=1');
             exit;
         }
 
     } else {
         // username does not exist
-        header('Location: loginPage.php?failed=1');
+        header('Location: ../web-login/loginPage.php?failed=1');
         exit;
     }
 ?>
