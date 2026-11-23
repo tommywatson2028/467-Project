@@ -26,14 +26,15 @@ body.login-page::before {
 body.login-page {
     display: grid;
     place-items: center;
-    padding: 1.25rem;
+    min-height: 100svh;
+    padding: 1rem;
 }
 
 .login-card {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: auto;
+    width: min(100%, 26rem);
     margin: auto;
     padding: 2rem;
     background: #fff;
@@ -43,24 +44,23 @@ body.login-page {
 
 .login-card .logo {
     align-self: center;
-    width: 200px;
+    width: min(12.5rem, 100%);
     height: auto;
-    object-fit: cover;
 }
 
 .login-card h2 {
-    margin: 0rem 0 2.5rem;
+    margin: 0 0 2rem;
     color: #334155;
     text-align: center;
     font-size: 1.5rem;
 }
 
 .login-form {
-  align-self: center;
-  display: grid;
-  gap: 1rem;
-  width: 300px;
-  height: auto;
+    align-self: center;
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    max-width: 18.75rem;
 }
 
 .form-group {
@@ -83,6 +83,7 @@ body.login-page {
 .form-group input {
     display: block;
     width: 100%;
+    min-height: 2.75rem;
     padding: 0.75rem 0.85rem;
     border: 1px solid #cbd5e1;
     border-radius: 4px;
@@ -98,7 +99,7 @@ body.login-page {
 }
 
 .login-btn {
-    margin-top: 1rem;
+    margin-top: 2rem;
     width: 100%;
     padding: 0.85rem 1rem;
     border: 0;
@@ -216,10 +217,6 @@ a.dashboard-link:hover {
 }
 
 @media (max-width: 62rem) {
-    .login-card {
-        padding: 1.5rem;
-    }
-
     body.dashboard-page {
         padding: 0;
     }
@@ -227,5 +224,19 @@ a.dashboard-link:hover {
     .dashboard-content {
         grid-template-columns: 1fr;
         padding: 1.25rem 1rem;
+    }
+}
+
+@media (max-width: 30rem) {
+    body.login-page {
+        padding: 0.75rem;
+    }
+
+    .login-card {
+        padding: 1.25rem;
+    }
+
+    .login-card h2 {
+        margin-bottom: 1.25rem;
     }
 }
