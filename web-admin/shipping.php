@@ -1,24 +1,38 @@
 <?php
+session_start();
+
+// Check admin privileges
+if (!isset($_SESSION['EmpID']) || $_SESSION['IsAdmin'] !== true) {
+    header('Location: ../web-login/employeeDashboard.php');
+    exit();
+}
+
+// Include required files
 include '../shared/helpers.php';
-include '../backend/adminFunctions.php'; // backend provides save_shipping_brackets() and get_shipping_brackets()
+include '../backend/adminFunctions.php';
 include '../shared/setConnectionParams.php';
 
+// Connect to database
 try {
-  $pdo = new PDO($dsn, $username, $password);
+    $pdo = new PDO($dsn, $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
-   echo 'Connection to database failed: ' . $e->getMessage();
+    error_log($e->getMessage());
+    exit('Unable to connect to the database.');
 }
 
 $message = '';
 $brackets = get_shipping_brackets($pdo);
 
+// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rows = [];
     $ids = $_POST['bracket_id'] ?? [];
     $mins = $_POST['min_weight'] ?? [];
     $maxs = $_POST['max_weight'] ?? [];
     $charges = $_POST['charge'] ?? [];
+
     foreach ($mins as $i => $min) {
         $rows[] = [
             'bracket_id' => $ids[$i] ?? $i,
@@ -27,15 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'charge' => $charges[$i] ?? 0
         ];
     }
+
     if (save_shipping_brackets($pdo, $rows)) {
-      $message = 'Shipping brackets saved successfully.';
-      $brackets = get_shipping_brackets($pdo);
+        $message = 'Shipping brackets saved successfully.';
+        $brackets = get_shipping_brackets($pdo);
     } else {
         $message = 'Failed to save shipping brackets.';
-        $brackets = $rows; // in case of failure, show the attempted values
+        $brackets = $rows;
     }
-} 
-
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,8 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="adm-page">
   <nav class="nav-bar">
+    <a href='../web-login/employeeDashboard.php' class="nav-link">↩ Back</a>
     <a href='index.php' class="nav-link">Orders</a>
     <a href='shipping.php' class="nav-link active">Shipping Charges</a>
+    <form class="nav-logout" action="../backend/logout.php" method="POST">
+      <button type="submit">Log Out</button>
+    </form>
   </nav>
   <div class="page-header">
     <img class="logo" src="../shared/images/NEMT_LOGO.png" alt="NEMT Auto Parts">

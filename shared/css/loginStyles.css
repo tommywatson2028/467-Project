@@ -1,0 +1,242 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body.login-page,
+body.dashboard-page {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    margin: 0;
+    color: #371f1f;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body.login-page::before {
+    position: fixed;
+    z-index: -1;
+    inset: -15px;
+    content: "";
+    background: url("../images/BACKGROUND.jpeg") center / cover no-repeat;
+    filter: blur(8px);
+}
+
+body.login-page {
+    display: grid;
+    place-items: center;
+    min-height: 100svh;
+    padding: 1rem;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: min(100%, 26rem);
+    margin: auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+}
+
+.login-card .logo {
+    align-self: center;
+    width: min(12.5rem, 100%);
+    height: auto;
+}
+
+.login-card h2 {
+    margin: 0 0 2rem;
+    color: #334155;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.login-form {
+    align-self: center;
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    max-width: 18.75rem;
+}
+
+.form-group {
+    margin: 0;
+}
+
+.form-group br,
+.login-form > br {
+    display: none;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #374151;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    display: block;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    background: #fff;
+    font: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #b42332;
+    box-shadow: 0 0 0 3px rgba(180, 35, 50, 0.15);
+}
+
+.login-btn {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 0;
+    border-radius: 4px;
+    background: #b42332;
+    color: #fff;
+    font: inherit;
+    font-weight: 300;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+    background: #8f1927;
+}
+
+.login-btn:focus-visible,
+.dashboard-link:focus-visible {
+    outline: 3px solid #f3c64e;
+    outline-offset: 3px;
+}
+
+.form-footer {
+    margin-top: 1.25rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.form-footer a {
+    color: #a51f2d;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+body.dashboard-page {
+    background-color: var(--background);
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    align-items: stretch;
+    gap: 1rem;
+    width: min(100%, 75rem);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.dashboard-content form {
+    margin: 0;
+}
+
+.dashboard-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    min-height: 12rem;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card h1,
+.dashboard-card h2 {
+    width: 100%;
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.5rem;
+    color: #1f2937;
+    font-size: 1.35rem;
+    line-height: 1.3;
+}
+
+.dashboard-card h1 {
+    border-bottom: 3px solid firebrick;
+}
+
+.dashboard-card h2 {
+    border-bottom: 3px solid #dbd1d1;
+}
+
+.dashboard-card h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+a.dashboard-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 7rem;
+    min-height: 2.5rem;
+    margin-top: auto;
+    padding: 0.6rem 1rem;
+    border: 1px solid #8f1927;
+    border-radius: 4px;
+    background: firebrick;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+a.dashboard-link:hover {
+    background: #8f1927;
+}
+
+@media (max-width: 62rem) {
+    body.dashboard-page {
+        padding: 0;
+    }
+
+    .dashboard-content {
+        grid-template-columns: 1fr;
+        padding: 1.25rem 1rem;
+    }
+}
+
+@media (max-width: 30rem) {
+    body.login-page {
+        padding: 0.75rem;
+    }
+
+    .login-card {
+        padding: 1.25rem;
+    }
+
+    .login-card h2 {
+        margin-bottom: 1.25rem;
+    }
+}

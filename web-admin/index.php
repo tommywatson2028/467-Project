@@ -21,11 +21,15 @@ $status = $_GET['status'] ?? '';
   <title>Admin - Orders</title>
   <link rel="stylesheet" href='../shared/css/styles.css'>
 </head>
-<nav class="nav-bar">
+<body class="adm-page">
+  <nav class="nav-bar" aria-label="Main navigation">
+    <a href='../web-login/employeeDashboard.php' class="nav-link">↩ Back</a>
     <a href='index.php' class="nav-link active">Orders</a>
     <a href='shipping.php' class="nav-link">Shipping Charges</a>
-</nav>
-<body class="adm-page">
+    <form class="nav-logout" action="../backend/logout.php" method="POST">
+      <button type="submit">Log Out</button>
+    </form>
+  </nav>
   <div class="page-header">
     <img class="logo" src='../shared/images/NEMT_LOGO.png' alt="NEMT Auto Parts">
     <h1 class="title">All Orders</h1>
