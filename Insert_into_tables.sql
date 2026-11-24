@@ -18,8 +18,8 @@ VALUES
 INSERT INTO EMPLOYEE
     (EmpID, IsAdmin, FirstName, LastName, Username, Password, Email)
 VALUES
-    (77777777777,FALSE,'Nico','Flowers','Prospill','$2y$12$nXTQ0.xaQTP74ovsuXsmMOmFuiPFDEYtWTg9gw2JV1WVlFojbcwl2','unomail@gmail.com'),
-    (93471390572,TRUE,'Timmy','Batson','Admin','$2y$12$ym1U0P3K/DursMNNAMaTCu0cgm/GzsKLXjuGmdxpk.H3Thjyu2Yta','dosmail@gmail.com'),
+    (77777777777,FALSE,'Nico','Flowers','Prospill','$2y$12$mYxoY2.4Cj47AcZGCBk0ueiC4MFKlQf4rKzAZcv4aLfoUNvkMT0ke','unomail@gmail.com'),
+    (93471390572,TRUE,'Timmy','Batson','Admin','$2y$12$nXTQ0.xaQTP74ovsuXsmMOmFuiPFDEYtWTg9gw2JV1WVlFojbcwl2','dosmail@gmail.com'),
     (00000000000,FALSE,'Mewgumi','Gohome','Gamerapple','66666666','tresmail@gmail.com'),
     (99999999999,FALSE,'Ewin','Richstrom','Hammersometimes','55555555','fourmail@gmail.com');
 
